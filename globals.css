@@ -1,0 +1,324 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(0.1 0.02 45);
+  --foreground: oklch(0.88 0.02 60);
+  --card: oklch(0.12 0.01 40);
+  --card-foreground: oklch(0.88 0.02 60);
+  --popover: oklch(0.1 0.01 40);
+  --popover-foreground: oklch(0.88 0.02 60);
+  --primary: oklch(0.55 0.18 25);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.18 0.01 40);
+  --secondary-foreground: oklch(0.75 0.02 60);
+  --muted: oklch(0.15 0.01 40);
+  --muted-foreground: oklch(0.55 0.02 60);
+  --accent: oklch(0.55 0.18 25);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.5 0.22 25);
+  --border: oklch(0.22 0.02 40);
+  --input: oklch(0.15 0.01 40);
+  --ring: oklch(0.55 0.18 25);
+  --radius: 0.25rem;
+  
+  --sidebar: oklch(0.06 0.01 40);
+  --sidebar-foreground: oklch(0.88 0.02 60);
+  --sidebar-primary: oklch(0.55 0.18 25);
+  --sidebar-border: oklch(0.2 0.02 40);
+}
+
+@theme inline {
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-border: var(--sidebar-border);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Typewriter font */
+.typewriter {
+  font-family: 'Courier New', Courier, monospace;
+  letter-spacing: 0.02em;
+}
+
+/* Handwritten style */
+.handwritten {
+  font-family: 'Georgia', serif;
+  font-style: italic;
+}
+
+/* Lamp flicker animation */
+@keyframes lamp-flicker {
+  0%, 90%, 100% { opacity: 1; }
+  91% { opacity: 0.92; }
+  93% { opacity: 1; }
+  95% { opacity: 0.88; }
+  97% { opacity: 1; }
+}
+
+@keyframes dust-float {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.2; }
+  50% { transform: translateY(-15px) translateX(8px); opacity: 0.4; }
+}
+
+@keyframes string-sway {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(2px); }
+}
+
+@keyframes unlock-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.6); }
+}
+
+.animate-lamp-flicker {
+  animation: lamp-flicker 10s infinite;
+}
+
+.animate-dust {
+  animation: dust-float 8s ease-in-out infinite;
+}
+
+.animate-string-sway {
+  animation: string-sway 4s ease-in-out infinite;
+}
+
+.animate-unlock-glow {
+  animation: unlock-glow 2s ease-in-out infinite;
+}
+
+/* Realistic wood desk texture */
+.wood-desk {
+  background: 
+    /* Main vignette */
+    radial-gradient(ellipse 120% 100% at 50% 50%, transparent 20%, rgba(0,0,0,0.6) 100%),
+    /* Lamp warm light from right side */
+    radial-gradient(ellipse 60% 80% at 95% 30%, rgba(255, 180, 100, 0.15) 0%, transparent 60%),
+    /* Secondary ambient from left */
+    radial-gradient(ellipse 50% 60% at 5% 20%, rgba(200, 150, 100, 0.05) 0%, transparent 50%),
+    /* Wood grain horizontal lines */
+    repeating-linear-gradient(
+      92deg,
+      transparent 0px,
+      rgba(80, 50, 25, 0.08) 1px,
+      transparent 2px,
+      transparent 25px
+    ),
+    repeating-linear-gradient(
+      88deg,
+      transparent 0px,
+      rgba(60, 35, 15, 0.06) 1px,
+      transparent 3px,
+      transparent 40px
+    ),
+    /* Base wood color */
+    linear-gradient(180deg, 
+      oklch(0.18 0.05 50) 0%,
+      oklch(0.15 0.04 45) 50%,
+      oklch(0.12 0.03 40) 100%
+    );
+}
+
+/* Paper grain texture */
+.paper-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+/* Scratches overlay */
+.scratches {
+  background-image: 
+    linear-gradient(25deg, transparent 48%, rgba(255,255,255,0.015) 49%, rgba(255,255,255,0.015) 51%, transparent 52%),
+    linear-gradient(-15deg, transparent 48%, rgba(0,0,0,0.03) 49%, rgba(0,0,0,0.03) 51%, transparent 52%),
+    linear-gradient(75deg, transparent 45%, rgba(255,255,255,0.01) 46%, rgba(255,255,255,0.01) 54%, transparent 55%);
+  background-size: 150px 150px, 200px 200px, 180px 180px;
+}
+
+/* Polaroid photo style */
+.polaroid {
+  background: linear-gradient(180deg, #f5f5f0 0%, #eeeee8 100%);
+  padding: 10px 10px 40px 10px;
+  box-shadow: 
+    0 4px 8px rgba(0,0,0,0.4),
+    0 8px 20px rgba(0,0,0,0.3),
+    0 15px 35px rgba(0,0,0,0.25);
+}
+
+/* Aged paper note */
+.aged-paper {
+  background: linear-gradient(135deg, 
+    #e8dcc8 0%, 
+    #ddd0bc 30%,
+    #d4c6b0 70%,
+    #cfc0a8 100%
+  );
+  box-shadow: 
+    0 3px 6px rgba(0,0,0,0.35),
+    0 8px 16px rgba(0,0,0,0.3),
+    0 12px 28px rgba(0,0,0,0.2),
+    inset 0 0 30px rgba(139, 90, 43, 0.08);
+}
+
+/* Yellow sticky note */
+.sticky-note {
+  background: linear-gradient(135deg, 
+    #fff9b1 0%, 
+    #fff18c 50%,
+    #ffe968 100%
+  );
+  box-shadow: 
+    0 3px 6px rgba(0,0,0,0.3),
+    0 6px 12px rgba(0,0,0,0.25),
+    2px 3px 0 rgba(0,0,0,0.05);
+}
+
+/* Manila envelope */
+.manila-envelope {
+  background: linear-gradient(145deg, 
+    #c9a86c 0%, 
+    #b8965a 40%,
+    #a88548 100%
+  );
+  box-shadow: 
+    0 4px 10px rgba(0,0,0,0.4),
+    0 10px 25px rgba(0,0,0,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+/* Tape effect */
+.tape {
+  background: linear-gradient(180deg, 
+    rgba(255, 248, 220, 0.85) 0%, 
+    rgba(255, 240, 200, 0.75) 50%,
+    rgba(255, 235, 180, 0.8) 100%
+  );
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+/* Push pin 3D */
+.push-pin {
+  background: radial-gradient(circle at 35% 35%, 
+    #c94040 0%,
+    #a82020 50%,
+    #801515 100%
+  );
+  box-shadow: 
+    0 3px 5px rgba(0,0,0,0.5),
+    0 1px 2px rgba(0,0,0,0.4),
+    inset 0 2px 3px rgba(255,255,255,0.25),
+    inset 0 -2px 3px rgba(0,0,0,0.3);
+}
+
+/* Red string */
+.red-string {
+  stroke: #8b2020;
+  stroke-width: 2.5;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.5));
+}
+
+/* CONFIDENTIAL stamp */
+.confidential-stamp {
+  color: #8b1e1e;
+  border: 3px solid #8b1e1e;
+  font-weight: bold;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+/* Coffee ring stain */
+.coffee-stain {
+  background: radial-gradient(ellipse at center,
+    transparent 35%,
+    rgba(80, 45, 20, 0.06) 36%,
+    rgba(80, 45, 20, 0.1) 50%,
+    rgba(80, 45, 20, 0.06) 64%,
+    transparent 65%
+  );
+}
+
+/* Final file locked style */
+.final-file {
+  background: linear-gradient(145deg, 
+    #3d3d3d 0%, 
+    #2d2d2d 50%,
+    #1d1d1d 100%
+  );
+  box-shadow: 
+    0 6px 15px rgba(0,0,0,0.5),
+    0 15px 35px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+/* Lift on hover */
+.lift-hover {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.lift-hover:hover {
+  transform: translateY(-8px) scale(1.02) rotate(var(--rotation, 0deg)) !important;
+  z-index: 50 !important;
+}
+
+.lift-hover:hover .polaroid {
+  box-shadow: 
+    0 12px 24px rgba(0,0,0,0.5),
+    0 20px 40px rgba(0,0,0,0.4),
+    0 30px 60px rgba(0,0,0,0.3);
+}
+
+.lift-hover:hover .aged-paper {
+  box-shadow: 
+    0 10px 20px rgba(0,0,0,0.45),
+    0 18px 36px rgba(0,0,0,0.35),
+    0 25px 50px rgba(0,0,0,0.25);
+}
+
+/* Glow effect on hover */
+.glow-hover:hover {
+  filter: drop-shadow(0 0 15px rgba(255, 200, 120, 0.3));
+}
+
+/* Line decoration for paper */
+.paper-lines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 26px,
+    rgba(100, 120, 160, 0.15) 26px,
+    rgba(100, 120, 160, 0.15) 27px
+  );
+}
